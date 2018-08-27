@@ -142,6 +142,8 @@ class IsWorkdaySensor(BinarySensorDevice):
 
     def is_exclude(self, day, now):
         """Check if given day is in the excludes list."""
+        if 'holiday' in self._workdays and now in self._obj_holidays:
+            return False
         if day in self._excludes:
             return True
         if 'holiday' in self._excludes and now in self._obj_holidays:
